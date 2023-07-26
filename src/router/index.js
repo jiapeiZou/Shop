@@ -1,21 +1,32 @@
+// createPouter 创建router实例对象
+// createWebHistory 创建history模式的路由
+
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Layout from '../views/Layout/index.vue'
+import Login from '../views/Login/index.vue'
+import Home from '../views/Home/index.vue'
+import Category from '../views/Category/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: '/', // 一级路由：首页
+      component: Layout,
+      children: [ 
+        {
+          path:'', // 二级路由：home（默认二级路由设为''）
+          component: Home
+        },
+        {
+          path:'category', // 二级路由：分类
+          component: Category
+        }
+      ]
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/login', // 一级路由：登陆
+      component: Login
     }
   ]
 })

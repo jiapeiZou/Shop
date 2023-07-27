@@ -5,9 +5,14 @@
 <template>
   <!-- 一级路由出口组件（一级路由：切换时页面所有都不一样的） -->
   <router-view />
+
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.box {
+  color:$sucColor;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;

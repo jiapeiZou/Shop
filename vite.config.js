@@ -31,8 +31,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // 2. 自动导入定制化样式文件进行覆盖  
-        additionalData: `@use "@/styles/element/index.scss" as *;`,
+        // 2. 自动导入定制化样式文件进行覆盖   自定义颜色，不用每次都import from './'
+        additionalData: `
+           @use "@/styles/element/index.scss" as *;
+           @use "@/styles/var.scss" as *;
+           `,
       },
     },
   },

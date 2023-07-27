@@ -10,7 +10,7 @@
                 <template v-if="true"> 
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont icon-user">  </i>
+                            <i class="iconfont icon-user"> &#xe7ae; </i>
                             王女士 
                         </a>
                     </li>

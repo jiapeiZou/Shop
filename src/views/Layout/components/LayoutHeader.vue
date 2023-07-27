@@ -28,7 +28,7 @@
             </ul>
 
             <div class="search">
-               <div class="iconfont icon-search"></div>
+               <div class="icon iconfont">&#xe601;</div>
                <input type="text" placeholder="搜一搜">
             </div>
             <!-- 头部购物车 -->
@@ -92,7 +92,7 @@
     line-height: 32px;
 
 
-    .icon-search {
+    .icon {
       font-size: 18px;
       margin-left: 5px;
     }

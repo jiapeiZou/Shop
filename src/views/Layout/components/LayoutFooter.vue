@@ -11,11 +11,11 @@
                     <div class="contact__item__text">客服服务</div>
                     <div class="contact__item__img">
                         <div class="box1">
-                            <div class="icon iconfont"></div>
+                            <div class="icon iconfont">&#xe7c7;</div>
                             <div class="text"> 在线客服 </div>
                         </div>
                         <div class="box1">
-                            <div class="icon iconfont"></div>
+                            <div class="icon iconfont">&#xe675;</div>
                             <div class="text"> 问题反馈 </div>
                         </div>
                     </div>
@@ -25,11 +25,11 @@
                     <div class="contact__item__text">关注我们</div>
                     <div class="contact__item__img">
                         <div class="box1">
-                            <div class="icon iconfont"></div>
+                            <div class="icon iconfont">&#xe65c;</div>
                             <div class="text"> 公众号 </div>
                         </div>
                         <div class="box1">
-                            <div class="icon iconfont"></div>
+                            <div class="icon iconfont">&#xe600;</div>
                             <div class="text"> 微博 </div>
                         </div>
                     </div>
@@ -61,9 +61,9 @@
     <!-- 其他 -->
     <div class="extra">
         <div class="extra__area">
-            <div class="extra__area__text"><i class="iconfont icon-footer01"></i>价格亲民</div>
-            <div class="extra__area__text"><i class="iconfont icon-footer01"></i>物流快捷</div>
-            <div class="extra__area__text"><i class="iconfont icon-footer01"></i>品质新鲜</div>
+            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe606;</i>价格亲民</div>
+            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe63f;</i>物流快捷</div>
+            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe8ce;</i>品质新鲜</div>
         </div>
 <!-- 版权信息 -->
         <div class="bottom">
@@ -120,6 +120,11 @@
       height: 92px;
       padding-top: 10px;
       border: 1px solid #ededed;
+}
+.icon{
+    color: #666;
+    flex: 1;
+    font-size: 40px;
 }
 .text{
     text-align: center;
@@ -196,5 +201,11 @@ color:#666 ;
             }
        }
     }
+}
+.icon-footer01{
+    padding-bottom: 5px;
+    margin-right: 5px;
+    font-size: 30px;
+    color: #fff;
 }
 </style>

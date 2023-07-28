@@ -1,5 +1,16 @@
 <script setup>
+import { ref } from 'vue'
+import { getCategoryAPI } from '../../../apis/layout'
 
+// 获取 一级 导航分类list
+const categoryList = ref([])
+const getCategory = async() => {
+  const result = await getCategoryAPI()
+  categoryList.value = result.result
+  // console.log(categoryList.value)
+}
+
+getCategory()
 </script>
 
 <template>
@@ -10,20 +21,8 @@
             </h1>
 
             <ul class="app-header-nav">
-                <li class="home">
-                    <router-link to="/">首页</router-link>
-                </li>
-                <li>
-                    <router-link to="/">居家</router-link>
-                </li>
-                <li>
-                    <router-link to="/">美食</router-link>
-                </li>
-                <li>
-                    <router-link to="/">服饰</router-link>
-                </li>
-                <li>
-                    <router-link to="/">数码</router-link>
+                <li class="home" v-for="item in categoryList" :key="item.id">
+                    <router-link to="/">{{ item.name }}</router-link>
                 </li>
             </ul>
 

@@ -1,4 +1,6 @@
 <template>
+    <!-- 引入 吸顶导航栏组件 -->
+    <LayoutFixed />
     <!-- 引入顶部导航栏组件 -->
     <LayoutNav />
     <!-- 引入头部组件 -->
@@ -10,11 +12,12 @@
 </template>
 
 <script setup>
+import LayoutFixed from './components/LayoutFixed.vue';
 import LayoutNav from './components/LayoutNav.vue';
-import LayoutHeader from './components/LayoutHeader.vue'
-import LayoutFooter from './components/LayoutFooter.vue'
-
+import LayoutHeader from './components/LayoutHeader.vue';
+import LayoutFooter from './components/LayoutFooter.vue';
 </script>
 
 <style>
+
 </style>

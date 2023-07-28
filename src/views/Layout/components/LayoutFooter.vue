@@ -62,8 +62,8 @@
     <div class="extra">
         <div class="extra__area">
             <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe606;</i>价格亲民</div>
-            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe63f;</i>物流快捷</div>
-            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe8ce;</i>品质新鲜</div>
+            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe63f;</i>品质新鲜</div>
+            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe8ce;</i>物流快捷</div>
         </div>
 <!-- 版权信息 -->
         <div class="bottom">

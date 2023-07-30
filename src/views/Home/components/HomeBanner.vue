@@ -1,4 +1,5 @@
-<!-- Banner轮播图 -->
+<!-- Banner轮播图  组件-->
+
 <script setup>
 import { onMounted, ref } from 'vue'
 import { getBannnerAPI } from '../../../apis/home'

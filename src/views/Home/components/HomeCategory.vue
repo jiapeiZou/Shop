@@ -1,3 +1,5 @@
+<!-- 种类category 组件 -->
+
 <script setup>
 import { ref } from 'vue'
 // import { useRouter } from 'vue-router'

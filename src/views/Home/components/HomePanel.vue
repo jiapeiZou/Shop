@@ -17,7 +17,7 @@ defineProps({
             <div class="head">
                 <h3>{{ title }}<small>{{ subTitle }}</small> </h3>
             </div>
-            <!-- 主体内容区 -->
+            <!-- 主体内容区 插槽-->
             <div>
                <slot> </slot>
             </div>
@@ -32,7 +32,7 @@ defineProps({
     .head{
         padding: 40px 0;
         display: flex;
-        align-items: flex-end; // 弹性项目在容器的交叉轴上的结束位置对齐
+        // align-items: flex-end; // 弹性项目在容器的交叉轴上的结束位置对齐
 
         h3{
             flex: 1;

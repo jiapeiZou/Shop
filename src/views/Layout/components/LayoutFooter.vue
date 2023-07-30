@@ -3,84 +3,124 @@
 </script>
 
 <template>
-    <footer class="app__footer"> 
-        <div class="contact">
-            <div class="container">
-               <!-- 联系我们 -->
-                <div class="contact__item">
-                    <div class="contact__item__text">客服服务</div>
-                    <div class="contact__item__img">
-                        <div class="box1">
-                            <div class="icon iconfont">&#xe7c7;</div>
-                            <div class="text"> 在线客服 </div>
-                        </div>
-                        <div class="box1">
-                            <div class="icon iconfont">&#xe675;</div>
-                            <div class="text"> 问题反馈 </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact__item">
-                    <div class="contact__item__text">关注我们</div>
-                    <div class="contact__item__img">
-                        <div class="box1">
-                            <div class="icon iconfont">&#xe65c;</div>
-                            <div class="text"> 公众号 </div>
-                        </div>
-                        <div class="box1">
-                            <div class="icon iconfont">&#xe600;</div>
-                            <div class="text"> 微博 </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact__item">
-                    <div class="contact__item__text">下载APP</div>
-                    <div class="contact__item__img">
-                        <div class="box1">
-                            <img class="img" src="@/assets/images/qrcode.jpg" />
-                        </div>
-                        <div class="box3">
-                            <div class="text1"> 扫描二维码 </div>
-                            <div class="text2"> 立马下载APP </div>
-                            <a href="javascript:;">下载页面</a>
-                        </div> 
-                    </div>
-                </div>
-
-                <div class="contact__item">
-                    <div class="contact__item__text">服务热线</div>
-                    <div class="contact__call">
-                        <div class="number">400-0000-000</div>
-                        <div class="time">周一至周日 8:00-18:00</div>
-                    </div>
-                </div>
+  <footer class="app__footer">
+    <div class="contact">
+      <div class="container">
+        <!-- 联系我们 -->
+        <div class="contact__item">
+          <div class="contact__item__text">
+            客服服务
+          </div>
+          <div class="contact__item__img">
+            <div class="box1">
+              <div class="icon iconfont">
+                &#xe7c7;
+              </div>
+              <div class="text">
+                在线客服
+              </div>
             </div>
+            <div class="box1">
+              <div class="icon iconfont">
+                &#xe675;
+              </div>
+              <div class="text">
+                问题反馈
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="contact__item">
+          <div class="contact__item__text">
+            关注我们
+          </div>
+          <div class="contact__item__img">
+            <div class="box1">
+              <div class="icon iconfont">
+                &#xe65c;
+              </div>
+              <div class="text">
+                公众号
+              </div>
+            </div>
+            <div class="box1">
+              <div class="icon iconfont">
+                &#xe600;
+              </div>
+              <div class="text">
+                微博
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__item">
+          <div class="contact__item__text">
+            下载APP
+          </div>
+          <div class="contact__item__img">
+            <div class="box1">
+              <img
+                class="img"
+                src="@/assets/images/qrcode.jpg"
+              >
+            </div>
+            <div class="box3">
+              <div class="text1">
+                扫描二维码
+              </div>
+              <div class="text2">
+                立马下载APP
+              </div>
+              <a href="javascript:;">下载页面</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__item">
+          <div class="contact__item__text">
+            服务热线
+          </div>
+          <div class="contact__call">
+            <div class="number">
+              400-0000-000
+            </div>
+            <div class="time">
+              周一至周日 8:00-18:00
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- 其他 -->
     <div class="extra">
-        <div class="extra__area">
-            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe606;</i>价格亲民</div>
-            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe63f;</i>品质新鲜</div>
-            <div class="extra__area__text"><i class="iconfont icon-footer01">&#xe8ce;</i>物流快捷</div>
+      <div class="extra__area">
+        <div class="extra__area__text">
+          <i class="iconfont icon-footer01">&#xe606;</i>价格亲民
         </div>
-<!-- 版权信息 -->
-        <div class="bottom">
-            <p class="bottom__text">
-                <a href="javascript:;">关于我们</a>
-                <a href="javascript:;">帮助中心</a>
-                <a href="javascript:;">售后服务</a>
-                <a href="javascript:;">配送与验收</a>
-                <a href="javascript:;">商务合作</a>
-                <a href="javascript:;">搜索推荐</a>
-                <a href="javascript:;">友情链接</a>
-          </p>
-          <p>CopyRight © 小兔鲜儿</p>
+        <div class="extra__area__text">
+          <i class="iconfont icon-footer01">&#xe63f;</i>品质新鲜
         </div>
+        <div class="extra__area__text">
+          <i class="iconfont icon-footer01">&#xe8ce;</i>物流快捷
+        </div>
+      </div>
+      <!-- 版权信息 -->
+      <div class="bottom">
+        <p class="bottom__text">
+          <a href="javascript:;">关于我们</a>
+          <a href="javascript:;">帮助中心</a>
+          <a href="javascript:;">售后服务</a>
+          <a href="javascript:;">配送与验收</a>
+          <a href="javascript:;">商务合作</a>
+          <a href="javascript:;">搜索推荐</a>
+          <a href="javascript:;">友情链接</a>
+        </p>
+        <p>CopyRight © 小兔鲜儿</p>
+      </div>
     </div>
-</footer>
-
+  </footer>
 </template>
 
 <style lang="scss" scoped>

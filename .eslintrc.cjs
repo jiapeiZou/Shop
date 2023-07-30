@@ -2,7 +2,8 @@
 module.exports = {
   root: true,
   'extends': [
-    'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-recommended',
+    '@vue/standard',
     'eslint:recommended'
   ],
   parserOptions: {

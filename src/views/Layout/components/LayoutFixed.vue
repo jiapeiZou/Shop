@@ -1,61 +1,113 @@
 <script setup>
-// vueUse插件  获取鼠标滚动距离
+// vueUse插件 获取鼠标滚动距离
 import { useScroll } from '@vueuse/core'
 // 解构 获取竖向Y轴滚动距离
-const { y } = useScroll(window) 
+const { y } = useScroll(window)
 
 </script>
 
 <template>
-    <header class="app-header" v-if=" y>78 ? true : false">
-        <div class="container">
-            <h1 class="logo">
-                <router-link to="/">小兔鲜</router-link>
-            </h1>
-            <ul class="app-header-nav">
-                <li class="home" >
-                    <router-link to="/">首页</router-link>
-                </li>
-            </ul>
-            <ul class="app-header-nav">
-                <li class="home" >
-                    <router-link to="/">居家</router-link>
-                </li>
-            </ul>
-            <ul class="app-header-nav">
-                <li class="home" >
-                    <router-link to="/">美食</router-link>
-                </li>
-            </ul>
-            <ul class="app-header-nav">
-                <li class="home" >
-                    <router-link to="/">服饰</router-link>
-                </li>
-            </ul>
-            <ul class="app-header-nav">
-                <li class="home" >
-                    <router-link to="/">母婴</router-link>
-                </li>
-            </ul>
-            <ul class="app-header-nav">
-                <li class="home" >
-                    <router-link to="/">生鲜</router-link>
-                </li>
-            </ul>
-            <ul class="app-header-nav">
-                <li class="home1" > ｜ </li>
-            </ul>
-            <ul class="app-header-nav">
-                <li class="home" >
-                    <router-link to="/">品牌</router-link>
-                </li>
-            </ul> <ul class="app-header-nav">
-                <li class="home" >
-                    <router-link to="/">专题</router-link>
-                </li>
-            </ul>
-        </div>
-    </header>
+  <header
+    v-if=" y>78 ? true : false"
+    class="app-header"
+  >
+    <div class="container">
+      <h1 class="logo">
+        <router-link to="/">
+          小兔鲜
+        </router-link>
+      </h1>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            首页
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            居家
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            美食
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            服饰
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            母婴
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            个护
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            严选
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            数码
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            运动
+          </router-link>
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            杂项
+          </router-link>
+        </li>
+      </ul>
+
+      <ul class="app-header-nav">
+        <li class="home1">
+          ｜
+        </li>
+      </ul>
+      <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            品牌
+          </router-link>
+        </li>
+      </ul> <ul class="app-header-nav">
+        <li class="home">
+          <router-link to="/">
+            专题
+          </router-link>
+        </li>
+      </ul>
+    </div>
+  </header>
 </template>
 
 <style lang="scss" scoped>
@@ -70,7 +122,9 @@ const { y } = useScroll(window)
     border-bottom: 1px solid #e4e4e4;
     z-index: 999;
     .container {
+        margin: 0;
         margin-left: 100px;
+        height: 80px;
         display: flex;
   }
   .logo {
@@ -105,13 +159,13 @@ const { y } = useScroll(window)
         line-height: 32px;
         height: 32px;
         display: inline-block;
-  
+
         &:hover {
           color: $xtxColor;
           border-bottom: 1px solid $xtxColor;
         }
       }
-  
+
       .active {
         color: $xtxColor;
         border-bottom: 1px solid $xtxColor;

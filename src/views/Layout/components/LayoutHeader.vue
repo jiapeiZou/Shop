@@ -4,7 +4,7 @@ import { getCategoryAPI } from '../../../apis/layout'
 
 // 获取 一级 导航分类list
 const categoryList = ref([])
-const getCategory = async() => {
+const getCategory = async () => {
   const result = await getCategoryAPI()
   categoryList.value = result.result
   // console.log(categoryList.value)
@@ -14,25 +14,38 @@ getCategory()
 </script>
 
 <template>
-    <header class="app-header">
-        <div class="container">
-            <h1 class="logo">
-                <router-link to="/">小兔鲜</router-link>
-            </h1>
+  <header class="app-header">
+    <div class="container">
+      <h1 class="logo">
+        <router-link to="/">
+          小兔鲜
+        </router-link>
+      </h1>
 
-            <ul class="app-header-nav">
-                <li class="home" v-for="item in categoryList" :key="item.id">
-                    <router-link to="/">{{ item.name }}</router-link>
-                </li>
-            </ul>
+      <ul class="app-header-nav">
+        <li
+          v-for="item in categoryList"
+          :key="item.id"
+          class="home"
+        >
+          <router-link to="/">
+            {{ item.name }}
+          </router-link>
+        </li>
+      </ul>
 
-            <div class="search">
-               <div class="icon iconfont">&#xe601;</div>
-               <input type="text" placeholder="搜一搜">
-            </div>
-            <!-- 头部购物车 -->
+      <div class="search">
+        <div class="icon iconfont">
+          &#xe601;
         </div>
-    </header>
+        <input
+          type="text"
+          placeholder="搜一搜"
+        >
+      </div>
+      <!-- 头部购物车 -->
+    </div>
+  </header>
 </template>
 
 <style lang="scss" scoped>
@@ -69,13 +82,13 @@ getCategory()
         line-height: 32px;
         height: 32px;
         display: inline-block;
-  
+
         &:hover {
           color: $xtxColor;
           border-bottom: 1px solid $xtxColor;
         }
       }
-  
+
       .active {
         color: $xtxColor;
         border-bottom: 1px solid $xtxColor;
@@ -89,7 +102,6 @@ getCategory()
     position: relative;
     border-bottom: 1px solid #e7e7e7;
     line-height: 32px;
-
 
     .icon {
       font-size: 18px;
@@ -132,6 +144,5 @@ getCategory()
 //       }
 //     }
 //   }
-
 
 </style>

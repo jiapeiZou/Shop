@@ -5,7 +5,6 @@
 <template>
   <!-- 一级路由出口组件（一级路由：切换时页面所有都不一样的） -->
   <router-view />
-
 </template>
 
 <style scoped lang="scss">

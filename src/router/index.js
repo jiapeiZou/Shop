@@ -13,13 +13,13 @@ const router = createRouter({
     {
       path: '/', // 一级路由：首页
       component: Layout,
-      children: [ 
+      children: [
         {
-          path:'', // 二级路由：home（默认二级路由设为''）
+          path: '', // 二级路由：home（默认二级路由设为''）
           component: Home
         },
         {
-          path:'category', // 二级路由：分类
+          path: 'category', // 二级路由：分类
           component: Category
         }
       ]

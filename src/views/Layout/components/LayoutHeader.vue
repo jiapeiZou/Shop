@@ -28,7 +28,7 @@ getCategory()
           :key="item.id"
           class="home"
         >
-          <router-link to="/">
+          <router-link :to= "`/category/${item.id}`" >
             {{ item.name }}
           </router-link>
         </li>

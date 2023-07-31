@@ -19,7 +19,7 @@ const router = createRouter({
           component: Home
         },
         {
-          path: 'category', // 二级路由：分类
+          path: '/category/:id', // 二级路由：导航栏分类 传入id
           component: Category
         }
       ]

@@ -1,9 +1,19 @@
 <script setup>
+import { ref } from 'vue'
+import { getCategoryAPI } from '../../../apis/layout'
 // vueUse插件 获取鼠标滚动距离
 import { useScroll } from '@vueuse/core'
 // 解构 获取竖向Y轴滚动距离
 const { y } = useScroll(window)
 
+const list = ref([])
+const getCategory = async() =>{
+  const result = await getCategoryAPI()
+  list.value = result.result
+  console.log(list.value)
+}
+
+getCategory()
 </script>
 
 <template>
@@ -18,94 +28,39 @@ const { y } = useScroll(window)
         </router-link>
       </h1>
       <ul class="app-header-nav">
+        <!--  -->
         <li class="home">
           <router-link to="/">
             首页
           </router-link>
         </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            居家
-          </router-link>
-        </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            美食
-          </router-link>
-        </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            服饰
-          </router-link>
-        </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            母婴
-          </router-link>
-        </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            个护
-          </router-link>
-        </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            严选
-          </router-link>
-        </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            数码
-          </router-link>
-        </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            运动
-          </router-link>
-        </li>
-      </ul>
-      <ul class="app-header-nav">
-        <li class="home">
-          <router-link to="/">
-            杂项
-          </router-link>
-        </li>
-      </ul>
 
-      <ul class="app-header-nav">
+        <!--  -->
+        <li class="home" v-for="item in list" :key="item.id">
+          <router-link :to="`/category/${item.id}`">
+            {{ item.name }}
+          </router-link>
+        </li>
+
+        <!--  -->
         <li class="home1">
           ｜
         </li>
-      </ul>
-      <ul class="app-header-nav">
+
         <li class="home">
           <router-link to="/">
             品牌
           </router-link>
         </li>
-      </ul> <ul class="app-header-nav">
+
         <li class="home">
           <router-link to="/">
             专题
           </router-link>
         </li>
+
       </ul>
+     
     </div>
   </header>
 </template>
@@ -121,6 +76,7 @@ const { y } = useScroll(window)
     top: 0;
     border-bottom: 1px solid #e4e4e4;
     z-index: 999;
+
     .container {
         margin: 0;
         margin-left: 100px;
@@ -148,10 +104,22 @@ const { y } = useScroll(window)
         height: 32px;
         color:$xtxColor ;
   }
+
+
+  .list{
+    display: flex;
+
+    a{
+      display: flex;
+
+    }
+  }
   .app-header-nav {
     padding-left: 40px;
+    display: flex;
     li{
       width: 38px;
+      margin-left: 40px;
       a {
         font-weight: 700;
         margin-top: 30px;

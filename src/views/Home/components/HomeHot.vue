@@ -21,7 +21,7 @@ getHot()
       <ul class="box">
         <li v-for="item in hotList" :key="item.id">
           <router-link to="/">
-            <img :src="item.picture" >
+            <img  v-img-lazy="item.picture">
              <p class="name">{{ item.title }}</p>
              <p class="text">{{ item.alt }}</p>
           </router-link>

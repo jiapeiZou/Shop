@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router' // 获取当前页面的路由ID
 import { getCategoryAPI }  from '../../apis/category' // 获取分类导航 接口数据
 import { getBannerAPI } from '../../apis/home' // 获取轮播图 接口数据
+import productItem from '../Home/components/ProductItem.vue' // 获取 产品卡片 子组件
 
 // 获取当前页面ID
 const route = useRoute()
@@ -14,7 +15,7 @@ const categoryData = ref( {} )
 const getCategory = async(  ) => {
   const result = await getCategoryAPI ( categoryId )
   categoryData.value = result.result
-  // console.log(result)
+  console.log(categoryData.value)
 }
 onMounted( () => getCategory() )
 
@@ -23,7 +24,7 @@ const bannerList = ref([])
 const getBanner = async() => {
   const result = await getBannerAPI( {distributionSite:'2'} )
   bannerList.value = result.result
-  console.log(bannerList.value)
+  //console.log(bannerList.value)
 }
 onMounted(() => getBanner())
 </script>
@@ -47,9 +48,31 @@ onMounted(() => getBanner())
             <img :src="img.imgUrl">
           </el-carousel-item>
         </el-carousel>
+      </div>
       <!-- elementPlay 中的走马灯插件 -->
+
+      <!-- 全部分类 -->
+      <div class="sub-list">
+        <h3>全部分类</h3>
+        <ul>
+          <li v-for="item in categoryData.children" :key="item.id">
+            <router-link to="/">
+              <img :src="item.picture" >
+              <p>{{ item.name }}</p>
+            </router-link>
+          </li>
+        </ul>
       </div>
 
+     <!-- 产品 -->
+     <div class="goods-list" v-for="item in categoryData.children" :key="item.id">
+      <div class="head">
+        <h3>-{{item.name}}-</h3>
+      </div>
+      <div class="product">
+        <productItem v-for="product in item.goods" :key="product.id" :product="product"/>
+      </div>
+     </div>
 
     </div>
   </div>
@@ -74,4 +97,75 @@ onMounted(() => getBanner())
     height: 500px;
   }
 }
+.sub-list{
+    margin-top: 20px;
+    background-color: #fff;
+
+    h3 {
+    font-size: 28px;
+    color: #666;
+    font-weight: normal;
+    text-align: center;
+    line-height: 100px;
+  }
+
+  ul{
+    display: flex;
+    padding: 0 32px;
+    flex-wrap: wrap; // 超出换行
+
+    li{
+      width: 168px;
+      height: 160px;
+
+      a{
+        text-align: center;
+        display: block; 
+        font-size: 16px;
+
+        &:hover{
+          color: $xtxColor;
+        }
+
+        img{
+        height: 100px;
+        width:100px ;
+      }
+
+      p{
+        font-size: 12px;
+        line-height: 40px;
+      }
+
+      }
+    }
+  }
+}
+
+.goods-list{
+  margin-top: 20px;
+  background-color: #fff;
+  .head{
+    font-size: 20px;
+    color: #666;
+    text-align: center;
+    line-height: 100px;
+
+    h3{
+      font-weight: normal;
+    }
+  }
+  .product{
+    display: flex;
+    padding: 0 10px 10px 20px ;
+    justify-content: space-around;
+    overflow: scroll;
+      a{
+        height: 300px;
+        width: 240px;
+        margin: 0 10px 10px 0;
+      }
+}
+}
+
 </style>

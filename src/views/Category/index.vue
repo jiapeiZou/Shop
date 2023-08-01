@@ -1,32 +1,11 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router' // 获取当前页面的路由ID
-import { getCategoryAPI }  from '../../apis/category' // 获取分类导航 接口数据
-import { getBannerAPI } from '../../apis/home' // 获取轮播图 接口数据
 import productItem from '../Home/components/ProductItem.vue' // 获取 产品卡片 子组件
+import { useBanner } from './composables/useBanner'
+import { useCategory } from './composables/useCategory'
 
-// 获取当前页面ID
-const route = useRoute()
-const categoryId = route.params.id
-// console.log(categoryId)
+const { bannerList } = useBanner()
+const { categoryData } = useCategory()
 
-// 获取分类导航栏接口数据
-const categoryData = ref( {} )
-const getCategory = async(  ) => {
-  const result = await getCategoryAPI ( categoryId )
-  categoryData.value = result.result
-  console.log(categoryData.value)
-}
-onMounted( () => getCategory() )
-
-// 获取 分类页的轮播图 接口数据
-const bannerList = ref([])
-const getBanner = async() => {
-  const result = await getBannerAPI( {distributionSite:'2'} )
-  bannerList.value = result.result
-  //console.log(bannerList.value)
-}
-onMounted(() => getBanner())
 </script>
 
 <template>
@@ -69,6 +48,7 @@ onMounted(() => getBanner())
       <div class="head">
         <h3>-{{item.name}}-</h3>
       </div>
+       <!-- 产品卡片 子组件 -->
       <div class="product">
         <productItem v-for="product in item.goods" :key="product.id" :product="product"/>
       </div>

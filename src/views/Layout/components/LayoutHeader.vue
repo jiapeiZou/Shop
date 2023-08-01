@@ -31,7 +31,8 @@ getCategory()
           :key="item.id"
           class="home"
         >
-          <router-link :to= "`/category/${item.id}?name=${item.name}`" >
+        <!-- 激活状态显示 active-class="active" -->
+          <router-link :to= "`/category/${item.id}?name=${item.name}`"  active-class="active">
             {{ item.name }}
           </router-link>
         </li>
@@ -91,7 +92,7 @@ getCategory()
           border-bottom: 1px solid $xtxColor;
         }
       }
-
+// 激活状态显示 active-class="active" 点击当前元素时，让他一直处于active 时的状态
       .active {
         color: $xtxColor;
         border-bottom: 1px solid $xtxColor;

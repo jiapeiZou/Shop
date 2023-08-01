@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import { getCategoryAPI } from '../../../apis/layout'
+import { getCategoryAPI } from '../../../apis/layout' // 获取接口数据
+
+
 
 // 获取 一级 导航分类list
 const categoryList = ref([])
@@ -9,8 +11,9 @@ const getCategory = async () => {
   categoryList.value = result.result
   // console.log(categoryList.value)
 }
-
 getCategory()
+
+
 </script>
 
 <template>
@@ -28,7 +31,7 @@ getCategory()
           :key="item.id"
           class="home"
         >
-          <router-link :to= "`/category/${item.id}`" >
+          <router-link :to= "`/category/${item.id}?name=${item.name}`" >
             {{ item.name }}
           </router-link>
         </li>

@@ -2,17 +2,18 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { getBannnerAPI } from '../../../apis/home'
+import { getBannerAPI } from '../../../apis/home' // 获取轮播图 接口数据
 
+// 获取 首页的轮播图 接口数据
 const imgList = ref([])
-const getBannner = async() =>{
-    const result = await getBannnerAPI()
+const getBanner = async() =>{
+    const result = await getBannerAPI()
     imgList.value = result.result
     // console.log(imgList.value)
 }
 
 onMounted(() => {
-  getBannner()
+  getBanner()
 })
 
 </script>

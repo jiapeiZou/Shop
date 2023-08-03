@@ -121,9 +121,9 @@ onMounted( () => getDetail() )
                     <!-- 右侧 -->
                     <div class="product-aside">
                         <!-- 24小时热榜 -->
-                        <DetailHotVue />
+                        <DetailHotVue :hot-type=1 />
                         <!-- 周热榜 -->
-                        <DetailHotVue />
+                        <DetailHotVue :hot-type=2 />
                     </div>
                 </div>
             </div>

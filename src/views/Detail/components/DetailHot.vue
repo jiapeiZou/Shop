@@ -1,14 +1,14 @@
+
+<!-- hot热榜 子组件 -->
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getHotAPI } from '../../../apis/detail'
-// defineProps(
-//     {
-//         product:{
-//             type: Object
-//         }
-//     }
-// )
+
+// 定义props参数 ，接收父组件传来的参数 适配不同接口的数据
+const props = defineProps({
+    hotType:{ type: Number } // 接收一个数字类型的参数
+})
 
 const route = useRoute()
 const Id = route.params.id
@@ -17,13 +17,12 @@ const prodectList = ref([])
 
 const paramsData = ref({
     id: Id,
-    type: 1,
+    type: props.hotType,
 })
 
 const getHot = async() => {
-    const result = await getHotAPI(paramsData.value)
+    const result = await getHotAPI( paramsData.value )
     prodectList.value = result.result
-    console.log(prodectList.value)
 }
 
 onMounted( () => getHot () )
@@ -33,7 +32,8 @@ onMounted( () => getHot () )
 <template>
         <div class="product-hot">
         <div>
-            <h3>周日榜单</h3>
+            <h3 v-if="props.hotType === 1"> 24小时热榜 </h3>
+            <h3 v-if="props.hotType === 2"> 周热榜 </h3>
             <router-link to="/" class="product-item"  v-for="item in prodectList" :key="item.id">
                 <img :src="item.picture" alt="">
                 <p class="name">{{ item.name }}</p>

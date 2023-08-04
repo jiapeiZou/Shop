@@ -114,9 +114,6 @@ getProduct()
       &:nth-child(4n){
         margin-right: 0;
       }
-
-     
-
      
     }
 

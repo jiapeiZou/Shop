@@ -23,7 +23,7 @@ defineProps({
 <style lang="scss" scoped>
 .product-item{
     transition: all 0.5s;
-
+     display: block;
     &:hover{
         transform: translate3d(0 ,-5px ,0);
         box-shadow: 0 3px 8px  rgb(0 0 0 / 20%);

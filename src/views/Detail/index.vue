@@ -1,7 +1,8 @@
 <script setup>
-import { ref, onMounted} from 'vue'
+import { ref, onMounted} from 'vue';
 import { useRoute } from 'vue-router';
-import { getDetailAPI } from '../../apis/detail'
+import { getDetailAPI } from '../../apis/detail';
+import ImageView from '../../components/ImageView/index.vue'; // 子组件
 import DetailHotVue from './components/DetailHot.vue'; // 子组件
 
 const route = useRoute()
@@ -39,7 +40,7 @@ onMounted( () => getDetail() )
 
                         <div class="media">
                             <!-- 图片预览区 -->
-
+                            <ImageView />
                             <!-- 统计数量 -->
                             <ul>
                                 <li>
@@ -136,6 +137,7 @@ onMounted( () => getDetail() )
     margin: 20px 0;
 }
 .product-info{
+    min-height: 600px;
     background: #fff;
     display: flex;
 

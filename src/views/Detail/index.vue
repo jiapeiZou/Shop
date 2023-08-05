@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted} from 'vue';
 import { useRoute } from 'vue-router';
-import { getDetailAPI } from '../../apis/detail';
-import ImageView from '../../components/ImageView/index.vue'; // 子组件
-import DetailHotVue from './components/DetailHot.vue'; // 子组件
+import { getDetailAPI } from '../../apis/detail'; // 接口
+import ImageView from '../../components/ImageView/index.vue'; // 放大镜图片 子组件
+import DetailHotVue from './components/DetailHot.vue'; // 热榜 子组件
+import XtxSku from '../../components/XtxSku/index.vue'; // SKU 子组件
 
 const route = useRoute()
 const detailId = route.params.id
@@ -12,10 +13,14 @@ const detailList = ref([])
 
 const getDetail = async() =>{
     const result = await getDetailAPI(detailId)
-    console.log("!!!!!!",result)
     detailList.value = result.result
 }
 onMounted( () => getDetail() )
+
+// sku 规格被操作时（参数 sku是子组件 事件触发时传递过来的 写好的对象 ）
+const skuChange = (sku)=> {
+   console.log(sku)
+}
 </script>
 
 <template>
@@ -39,8 +44,8 @@ onMounted( () => getDetail() )
                     <div class="product-info">
 
                         <div class="media">
-                            <!-- 图片预览区 -->
-                            <ImageView />
+                            <!-- 图片预览区 子组件-->
+                            <ImageView :image-list="detailList.mainPictures"/>
                             <!-- 统计数量 -->
                             <ul>
                                 <li>
@@ -90,6 +95,7 @@ onMounted( () => getDetail() )
                                 </dl>
                             </div>
                              <!-- sku组件 -->
+                             <XtxSku :goods="detailList" @change="skuChange"/>
                              <!--  数据组件 -->
                              <!--  按钮组件 -->
                             <div>
@@ -121,10 +127,10 @@ onMounted( () => getDetail() )
                     </div>  
                     <!-- 右侧 -->
                     <div class="product-aside">
-                        <!-- 24小时热榜 -->
-                        <DetailHotVue :hot-type=1 />
-                        <!-- 周热榜 -->
-                        <DetailHotVue :hot-type=2 />
+                        <!-- 24小时热榜 子组件-->
+                        <DetailHotVue :hot-type = "1" />
+                        <!-- 周热榜 子组件-->
+                        <DetailHotVue :hot-type = "2" />
                     </div>
                 </div>
             </div>

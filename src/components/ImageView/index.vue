@@ -5,19 +5,18 @@
 import { useMouseInElement } from '@vueuse/core' // 跟踪鼠标在元素中的位置和状态 
 import { ref, watch } from 'vue'
 
-// 图片列表
-const imageList = [
-  "https://yanxuan-item.nosdn.127.net/d917c92e663c5ed0bb577c7ded73e4ec.png",
-  "https://yanxuan-item.nosdn.127.net/e801b9572f0b0c02a52952b01adab967.jpg",
-  "https://yanxuan-item.nosdn.127.net/b52c447ad472d51adbdde1a83f550ac2.jpg",
-  "https://yanxuan-item.nosdn.127.net/f93243224dc37674dfca5874fe089c60.jpg",
-  "https://yanxuan-item.nosdn.127.net/f881cfe7de9a576aaeea6ee0d1d24823.jpg"
-]
+// 定义props参数  接收父组件传递的图片列表参数
+defineProps({
+    imageList: {
+        type : Array,
+        default: () => []
+    } // 默认导出空数组
+})
+
 // 1. 小图 切换 大图
 const imgIndex = ref(0)
-const enter = (index) => {
+const enter = (index) => { // @mouseenter中 获取当前鼠标所在图片的下标index
     imgIndex .value = index
-    console.log(imgIndex .value)
 }
 
 // 2. 获取鼠标相对位置
@@ -140,7 +139,7 @@ watch( [elementX, elementY], () => {
             height:68px;
             margin: 0 0 12px 15px;
             background: rgba(0,0,0,0.2);
-            cursor: pointer; //????
+            cursor: pointer; // 鼠标指针在悬停在该元素上时会变成一个手形，表示该元素是可点击的或具有交互功能。
 
             &:hover{
                 border: 2px solid $xtxColor;

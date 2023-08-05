@@ -8,7 +8,8 @@ import App from './App.vue'
 import router from './router'
 
 import './styles/iconfont.css' // 引入iconfont
-import { lazyPlugin } from './directives' // 引入懒加载指令 
+import { lazyPlugin } from './directives' // 引入 全局 懒加载指令 
+import { componentPlugin } from './components' // 引入 全局 组件
 
 
 const app = createApp(App)
@@ -16,12 +17,13 @@ const app = createApp(App)
 app.use(createPinia())
 
 app.use(router)
-app.use(lazyPlugin) // 注册插件
+app.use(lazyPlugin) // 注册懒加载指令插件
+app.use(componentPlugin) // 注册全局 组件
 
 app.mount('#app')
 
-
-// 注册 自定义全局组件
+// 注册 自定义全局指令
+// 使用 app.directive() 来创建或注册一个全局的自定义指令。Vue 指令可以让你为 HTML 元素添加特殊的反应行为
 // 使用v-img-lazy 在所有组件中都可使用，img-lazy为指令名
 //app.directive('img-lazy',{ 
         // mounted 声明周期函数  在挂载（即第一次渲染） DOM 之后调用

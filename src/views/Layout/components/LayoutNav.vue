@@ -7,7 +7,7 @@
   <nav class="app-topnav">
     <div class="container">
       <ul>
-        <template v-if="true">
+        <template v-if="false">
           <li>
             <a href="javascript:;">
               <i class="iconfont icon-user"> &#xe7ae; </i>
@@ -31,7 +31,7 @@
         </template>
 
         <template v-else>
-          <li><a href="javascript:;"> 请先登陆 </a></li>
+          <li><a href="javascript:;" @click="$router.push('/login')"> 请先登陆 </a></li>
           <li><a href="javascript:;"> 帮助中心 </a></li>
           <li><a href="javascript:;"> 关于我们 </a></li>
           <!-- 这个超链接使用了 href="javascript:;"，这是一个常用的技巧，用来创建一个 "伪链接"，当你点击这个链接时，它实际上不会导向任何页面，而只是执行 JavaScript 代码。在这个例子中，它实际上并不执行任何 JavaScript 代码，因为 ; 后面是空的。 -->

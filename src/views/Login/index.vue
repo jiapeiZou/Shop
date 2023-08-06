@@ -1,11 +1,14 @@
 <!--  表单校验（账户名+密码+协议） -->
 
 <script setup>
+
 import 'element-plus/theme-chalk/el-message.css'
 import { ElMessage } from 'element-plus'; // 消息提示插件
-import { loginAPI } from '../../apis/user';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+
+import { useUserStore } from '../../stores/user' // pinia 状态管理库
+const userStore = useUserStore()
 const router = useRouter()
 
 // 1.准备表单对象
@@ -47,14 +50,13 @@ const doLogin = () => {
   const { account, password } = form.value // 结构赋值（接口只需要其中两个数据）
 
   // 调用实例方法
-  formRef.value.validate(  async (valid) => {
+  formRef.value.validate(async (valid) => {
     console.log('11111',valid)
   // valid:所以表单都通过校验 才为true (防止用户直接点击登陆按钮，直接跳过表单校验)
 
    if(valid){
     // 1，发送post请求
-    const result = await loginAPI( {account, password} )
-    console.log(result)
+    await userStore.getUserIfon({ account, password })
     // 2，用户提示 成功（ElMessage插件）
     ElMessage({ message: '登陆成功', type: 'success' })
     // 3.跳转 首页

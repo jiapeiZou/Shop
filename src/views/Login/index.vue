@@ -1,6 +1,40 @@
-
+<!--  表单校验（账户名+密码+协议） -->
 
 <script setup>
+import { ref } from 'vue'
+
+// 1.准备表单对象
+const form = ref({
+  account:'' ,
+  password:'' ,
+  agree:'true'
+})
+// 2.准备规则对象
+const rules = {
+  account:[
+    {required:true, massage:'用户名不能为空', trigger:'blur'} // require必填:（布尔值） trigger验证逻辑的触发方式 : blur (鼠标挪走 不聚焦时，就做出判断是否正确。 还有一种是最后点击提交时)
+  ],
+  password:[
+    {required:true, massage:'密码不能为空', trigger:'blur'},
+    {min:6, max:14, massage:'密码长度为6-14个字符', trigger:'blur'}
+  ],
+  agree:[
+    { // 自定义校验逻辑（勾选协议/通过  不勾选/不通过）
+      validator:(rule, value, callback) => {
+        // value 当前输入的数据
+        // callback 校验处理函数
+        if(value){
+          callback() // 通过 则调用回调函数
+        }else{
+          callback( new Error('请勾选协议') ) // 不通过 则调用函数，并返回错误error
+        }
+      }
+    }
+  ]
+}
+
+
+
 
 </script>
 
@@ -27,15 +61,15 @@
 
         <div class="account-box">
           <div class="form">
-            <el-form label-position="right" label-width="60px" status-icon>
-              <el-form-item  label="账户">
-                <el-input/>
+            <el-form :rules="rules" :model="form" label-position="right" label-width="60px" status-icon>
+              <el-form-item  label="账户" prop="account">
+                <el-input v-model="form.account"/>
               </el-form-item>
-              <el-form-item label="密码">
-                <el-input/>
+              <el-form-item label="密码" prop="password">
+                <el-input v-model="form.password"/>
               </el-form-item>
-              <el-form-item label-width="22px">
-                <el-checkbox  size="large">
+              <el-form-item  prop="agree" label-width="22px">
+                <el-checkbox  v-model="form.agree" size="large">
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>

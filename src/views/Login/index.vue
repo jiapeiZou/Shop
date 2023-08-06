@@ -1,18 +1,23 @@
 <!--  表单校验（账户名+密码+协议） -->
 
 <script setup>
-import { ref } from 'vue'
+import 'element-plus/theme-chalk/el-message.css'
+import { ElMessage } from 'element-plus'; // 消息提示插件
+import { loginAPI } from '../../apis/user';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 // 1.准备表单对象
 const form = ref({
   account:'' ,
   password:'' ,
-  agree:'true'
+  agree: true
 })
 // 2.准备规则对象
 const rules = {
   account:[
-    {required:true, massage:'用户名不能为空', trigger:'blur'} // require必填:（布尔值） trigger验证逻辑的触发方式 : blur (鼠标挪走 不聚焦时，就做出判断是否正确。 还有一种是最后点击提交时)
+    {required:true, massage:'用户名不能为空', trigger:'blur'} // require必填:（布尔值） trigger验证逻辑的触发方式 : blur/change (鼠标挪走 不聚焦时，就做出判断是否正确。 还有一种是最后点击提交时)
   ],
   password:[
     {required:true, massage:'密码不能为空', trigger:'blur'},
@@ -21,6 +26,7 @@ const rules = {
   agree:[
     { // 自定义校验逻辑（勾选协议/通过  不勾选/不通过）
       validator:(rule, value, callback) => {
+        console.log(value)
         // value 当前输入的数据
         // callback 校验处理函数
         if(value){
@@ -33,8 +39,32 @@ const rules = {
   ]
 }
 
+// 3. 统一校验 点击登陆时
 
+// 获取form组件Dom实例
+const formRef = ref(null)
+const doLogin = () => {
+  const { account, password } = form.value // 结构赋值（接口只需要其中两个数据）
 
+  // 调用实例方法
+  formRef.value.validate(  async (valid) => {
+    console.log('11111',valid)
+  // valid:所以表单都通过校验 才为true (防止用户直接点击登陆按钮，直接跳过表单校验)
+
+   if(valid){
+    // 1，发送post请求
+    const result = await loginAPI( {account, password} )
+    console.log(result)
+    // 2，用户提示 成功（ElMessage插件）
+    ElMessage({ message: '登陆成功', type: 'success' })
+    // 3.跳转 首页
+    router.push( {path:'/'} )
+   }
+   else{
+
+   }
+   })
+}
 
 </script>
 
@@ -61,7 +91,7 @@ const rules = {
 
         <div class="account-box">
           <div class="form">
-            <el-form :rules="rules" :model="form" label-position="right" label-width="60px" status-icon>
+            <el-form ref="formRef" :rules="rules" :model="form"  label-position="right" label-width="60px" status-icon>
               <el-form-item  label="账户" prop="account">
                 <el-input v-model="form.account"/>
               </el-form-item>
@@ -73,7 +103,7 @@ const rules = {
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button size="large" class="subBtn">点击登录</el-button>
+              <el-button size="large" class="subBtn"  @click="doLogin">点击登录</el-button>
             </el-form>
           </div>
         </div>

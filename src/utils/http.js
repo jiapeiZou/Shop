@@ -1,6 +1,9 @@
 // axios 基础封装
 import axios from 'axios'
 
+import 'element-plus/theme-chalk/el-message.css'
+import { ElMessage } from 'element-plus'; // 消息提示插件
+
 // ----- 接口基地址 接口超时时间
 const httpInstance = axios.create({
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
@@ -22,12 +25,13 @@ httpInstance.interceptors.request.use(config => {
 }, e => Promise.reject(e))
 
 // ----- axios响应式拦截器
-httpInstance.interceptors.response.use(res => res.data, e => {
+httpInstance.interceptors.response.use( res => res.data, e => {
   // // 统一错误提示
-  // ElMessage({
-  //   type: 'warning',
-  //   message: e.response.data.message
-  // })
+  console.log(e)
+  ElMessage({
+    type: 'warning',
+    message: e.response.data.message
+  })
   return Promise.reject(e)
 })
 

@@ -3,6 +3,7 @@ import './styles/common.scss'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate' // 引入 pinia 用户数据持久化，把数据存在localStorage中
 
 import App from './App.vue'
 import router from './router'
@@ -13,13 +14,15 @@ import { componentPlugin } from './components' // 引入 全局 组件
 
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(createPinia())
+pinia.use(piniaPluginPersistedstate) //注册 数据持久化 插件 
+// 在defineStore()中,  persistent属性 : true 即可使用
 
+app.use(pinia)
 app.use(router)
 app.use(lazyPlugin) // 注册懒加载指令插件
 app.use(componentPlugin) // 注册全局 组件
-
 app.mount('#app')
 
 // 注册 自定义全局指令

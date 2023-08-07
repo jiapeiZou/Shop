@@ -1,4 +1,20 @@
 <script setup>
+import { useRouter } from 'vue-router'
+import { useUserStore } from '../../../stores/user'
+const router = useRouter()
+const UserStore = useUserStore()
+
+
+const confirm = () => { // el-popconfirm 中自带的 （confirm 点击确认按钮时触发）
+  console.log('要退出了')
+  // 退出登陆业务逻辑信息
+    // 1. 清除用户信息 触发action
+    UserStore.clearUserInfo( )
+    // 2. 跳转到登陆页
+    router.push('/login')
+}
+
+
 
 </script>
 
@@ -7,22 +23,25 @@
   <nav class="app-topnav">
     <div class="container">
       <ul>
-        <template v-if="false">
+        <!-- 多模版渲染 区分登陆状态 与未登陆状态 -->
+        <!-- 适配思路：判断localstorage中是否有token 登陆时显示v-if这一块  未登陆时显示v-else那块 -->
+        <template v-if="UserStore.userInfo.token" >
           <li>
             <a href="javascript:;">
               <i class="iconfont icon-user"> &#xe7ae; </i>
-              王女士
+              {{ UserStore.userInfo.account }}
             </a>
           </li>
-          <!-- <el-popconfirm> 是 Element UI 组件库中的一个组件，它用于创建一个点击触发的确认框 -->
+          <!-- <el-popconfirm> 气泡确认框 是 Element UI 组件库中的一个组件，它用于创建一个点击触发的确认框 -->
           <li>
             <el-popconfirm
               title="确定退出吗？"
               confirm-button-text="确定"
               cancel-button-text="取消"
+              @confirm="confirm"
             >
               <template #reference>
-                <a href="javascript:;"> 退出登陆 </a>
+                <a href="javascript:;" > 退出登陆 </a>
               </template>
             </el-popconfirm>
           </li>

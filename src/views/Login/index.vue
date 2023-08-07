@@ -56,7 +56,7 @@ const doLogin = () => {
 
    if(valid){
     // 1，发送post请求
-    await userStore.getUserIfon({ account, password })
+    await userStore.getUserInfo({ account, password })
     // 2，用户提示 成功（ElMessage插件）
     ElMessage({ message: '登陆成功', type: 'success' })
     // 3.跳转 首页
@@ -98,7 +98,7 @@ const doLogin = () => {
                 <el-input v-model="form.account"/>
               </el-form-item>
               <el-form-item label="密码" prop="password">
-                <el-input v-model="form.password"/>
+                <el-input type="password" v-model="form.password"/>
               </el-form-item>
               <el-form-item  prop="agree" label-width="22px">
                 <el-checkbox  v-model="form.agree" size="large">

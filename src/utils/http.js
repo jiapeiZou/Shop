@@ -1,7 +1,8 @@
 // axios 基础封装
-import axios from 'axios'
-import { useUserStore } from '../stores/user' // 存储在 pinia 中 的用户数据（token 从此取）
-import 'element-plus/theme-chalk/el-message.css'
+import axios from 'axios';
+import router from '@/router'; // 这里没用 useRouter 使用范围：1.setup 函数中 2. composable 函数中 （因为它是Vue 3 的 Composition API 而设计的 ）
+import { useUserStore } from '../stores/user'; // 存储在 pinia 中 的用户数据（token 从此取）
+import 'element-plus/theme-chalk/el-message.css';
 import { ElMessage } from 'element-plus'; // 消息提示插件
 
 // ----- 接口基地址 接口超时时间
@@ -24,14 +25,25 @@ httpInstance.interceptors.request.use( config => {
   return config
 }, e => Promise.reject(e))
 
-// ----- axios响应式拦截器
+// ----- axios响应式拦截器 
 httpInstance.interceptors.response.use( res => res.data, e => {
-  // // 统一错误提示
+  const userStore = useUserStore()
+
+  // 统一错误提示
   console.log(e)
   ElMessage({
     type: 'warning',
     message: e.response.data.message
   })
+
+  // 401状态错误拦截器（token失效）
+  if( e.response.status === 401 ){
+    // 1.清空过期的用户信息(数据在pinia store中)
+    userStore.clearUserInfo()
+    // 2.跳转到登陆页
+    router.push('/login')
+  }
+ 
   return Promise.reject(e)
 })
 

@@ -5,6 +5,10 @@ import { getDetailAPI } from '../../apis/detail'; // 接口
 import ImageView from '../../components/ImageView/index.vue'; // 放大镜图片 子组件
 import DetailHotVue from './components/DetailHot.vue'; // 热榜 子组件
 import XtxSku from '../../components/XtxSku/index.vue'; // SKU 子组件
+import { useCartStore } from '../../stores/cart'
+import { ElMessage } from 'element-plus';
+
+const cartStore = useCartStore()
 
 const route = useRoute()
 const detailId = route.params.id
@@ -14,13 +18,45 @@ const detailList = ref([])
 const getDetail = async() =>{
     const result = await getDetailAPI(detailId)
     detailList.value = result.result
+    console.log("00000",detailList.value)
 }
 onMounted( () => getDetail() )
 
-// sku 规格被操作时（参数 sku是子组件 事件触发时传递过来的 写好的对象 ）
+// sku 规格被操作时（参数sku 是子组件 事件触发时传递过来的 写好的对象 ）
+let skuObj = {}
 const skuChange = (sku)=> {
    console.log(sku)
+   skuObj = sku // 当尺码、颜色 同时被选中 才会有当前选中商品的数据
 }
+
+// <el-input-number> 中自带函数 能打印出当前数量值
+const count = ref(1)
+const countChange = (number) => { 
+   count.value = number
+}
+
+// 点击 购物车 事件
+const handleAddCart = () => {
+    // 已选择规格 触发action
+    if( skuObj.skuId ){
+        cartStore.addCart({
+            id: detailList.value.id,
+            name: detailList.value.name,
+            picture: detailList.value.mainPictures[0],
+            price: detailList.value.price,
+            count: count.value,
+            skuId: skuObj.skuId,
+            attrsText: skuObj.attrsText, // 商品规格文本
+            selected: true, // 商品是否选中
+        })
+    }
+    // 未选择规格 提示用户
+    else{
+    ElMessage.warning('请选择规格')
+    }
+}
+
+
 </script>
 
 <template>
@@ -97,9 +133,10 @@ const skuChange = (sku)=> {
                              <!-- sku组件 -->
                              <XtxSku :goods="detailList" @change="skuChange"/>
                              <!--  数据组件 -->
+                             <el-input-number v-model="count" :min="0" @change="countChange" />
                              <!--  按钮组件 -->
-                            <div>
-                                <el-button>加入购物车</el-button>
+                            <div class="cart-button">
+                                <el-button  @click="handleAddCart">加入购物车</el-button>
                             </div>
                         </div>
                        
@@ -306,5 +343,8 @@ const skuChange = (sku)=> {
 .product-aside{
     display: flex;
     flex-direction: column;
+}
+.cart-button{
+    margin-top: 20px;
 }
 </style>

@@ -29,18 +29,37 @@ export const useCartStore = defineStore('cart',()=>{
     }
 
     // 4.计算属性
-    const total = computed(() => {
-        let count = 0;
-        let price = 0;
-        for(let i = 0; i < cartList.value.length; i++) {
-            // 1.总数量
-            count += cartList.value[i].count;
-            // 2.总价
-            price += cartList.value[i].price * cartList.value[i].count;
-        }
-        return { count, price } 
-    })
+    const allCount = computed(() => cartList.value.reduce(( a, c ) => a + c.count , 0 ))
+    const allPrice = computed(() => cartList.value.reduce(( a, c ) => a + c.count*c.price , 0 ))
+    // const total = computed(() => {
+    //     let count = 0;
+    //     let price = 0;
+    //     for(let i = 0; i < cartList.value.length; i++) {
+    //         // 1.总数量
+    //         count += cartList.value[i].count;
+    //         // 2.总价
+    //         price += cartList.value[i].price * cartList.value[i].count;
+    //     }
+    //     return { count, price } 
+    // })
 
-    return { cartList, addCart, delCart, total }
+    // 5.单选功能 (单选框中 )
+    const singleCheck = ( val, item ) => {
+       // val: el-checkbox 单选框 返回 此项的勾选状态 布尔值
+       // item: 当前商品
+       // 通过skuId找到要要修改的那一项 然后把它的selected值 修改为 传过来的 val
+       const ckeckItem = cartList.value.find((i) => i.skuId === item.skuId)
+       ckeckItem.selected = val
+    }
+
+    // 6. 全选框功能
+    // 单选决定全选：判断cartList中的每一项勾选状态都为true时 ，全选框才为true
+    const cartAllCheck = computed(() => cartList.value.every((i) => i.selected === true))
+    // 全选决定单选 ：cartList的每一项勾选状态 = 全选框状态
+    const allCheck = (bool) => {
+        cartList.value.forEach((i) => i.selected = bool)
+    }
+
+    return { cartList, allCount, allPrice, cartAllCheck, addCart, delCart, singleCheck, allCheck }
 },
 { persist:true })  // 数据持久化

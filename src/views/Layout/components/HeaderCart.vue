@@ -35,10 +35,10 @@ const cartStore = useCartStore()
              <!-- 统计区 -->
             <div class="foot">
                 <div class="total">
-                    <p>共 {{ cartStore.total.count }} 件商品</p>
-                    <p>&yen; {{ cartStore.total.price.toFixed(2) }}</p>
+                    <p>共 {{ cartStore.allCount }} 件商品</p>
+                    <p>&yen; {{ cartStore.allPrice.toFixed(2) }}</p>
                 </div>
-                    <el-button>去购物车结算</el-button>
+                    <el-button @click="$router.push('/cartlist')">去购物车结算</el-button>
             </div>
 
         </div>

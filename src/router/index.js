@@ -8,6 +8,7 @@ import Home from '../views/Home/index.vue'
 import Category from '../views/Category/index.vue'
 import SubCategory from '../views/SubCategory/index.vue'
 import Detail from '../views/Detail/index.vue'
+import CartList from '../views/CartList/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,18 +31,23 @@ const router = createRouter({
         },
         // 二级路由：导航栏分类 传入id
         { 
-          path: '/category/:id', 
+          path: 'category/:id', 
           component: Category
         },
         // 二级路由：产品类 传入id
         {
-          path: '/category/sub/:id',
+          path: 'category/sub/:id',
           component: SubCategory
         },
         // 二级路由：产品详情 传入id
         {
-          path: '/detail/:id',
+          path: 'detail/:id',
           component: Detail
+        },
+        // 二级路由：购物车
+        {
+          path: 'cartlist',
+          component: CartList
         }
       ]
     }

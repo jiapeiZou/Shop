@@ -83,6 +83,9 @@ const handleCheckAllChange = (bool) => {
             text-align: center;
             .img{
                 text-align: left;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
             img {
                 width: 100px;

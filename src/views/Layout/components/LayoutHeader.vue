@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { getCategoryAPI } from '../../../apis/layout' // 获取接口数据
-
+import HeaderCart from './HeaderCart.vue'; // 购物车组件
 
 
 // 获取 一级 导航分类list
@@ -47,7 +47,8 @@ getCategory()
           placeholder="搜一搜"
         >
       </div>
-      <!-- 头部购物车 -->
+      <!-- 购物车 子组件-->
+      <HeaderCart />
     </div>
   </header>
 </template>

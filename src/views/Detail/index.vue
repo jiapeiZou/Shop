@@ -70,7 +70,7 @@ const handleAddCart = () => {
                     <el-breadcrumb-item :to="{ path: '/' }"> 首页 </el-breadcrumb-item>
                     <el-breadcrumb-item :to="{ path:`/category/${detailList.categories[1].id}` }"> {{ detailList.categories?.[1].name }} </el-breadcrumb-item>
                     <el-breadcrumb-item :to="{ path:`/category/sub/${detailList.categories[0].id}` }"> {{ detailList.categories?.[0].name }} </el-breadcrumb-item>
-                    <el-breadcrumb-item> ins风小碎花泡泡袖 </el-breadcrumb-item>
+                    <el-breadcrumb-item> {{ detailList.name }} </el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
 

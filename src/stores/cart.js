@@ -31,17 +31,10 @@ export const useCartStore = defineStore('cart',()=>{
     // 4.计算属性
     const allCount = computed(() => cartList.value.reduce(( a, c ) => a + c.count , 0 ))
     const allPrice = computed(() => cartList.value.reduce(( a, c ) => a + c.count*c.price , 0 ))
-    // const total = computed(() => {
-    //     let count = 0;
-    //     let price = 0;
-    //     for(let i = 0; i < cartList.value.length; i++) {
-    //         // 1.总数量
-    //         count += cartList.value[i].count;
-    //         // 2.总价
-    //         price += cartList.value[i].price * cartList.value[i].count;
-    //     }
-    //     return { count, price } 
-    // })
+    // 筛选被勾选的商品 并计算其总数量
+    const selectedCount = computed(() => cartList.value.filter((item) => item.selected === true).reduce((a, c) => a + c.count, 0))
+    // 筛选被勾选的商品 并计算其总价
+    const selectedPrice = computed(() => cartList.value.filter((item) => item.selected === true).reduce((a, c) => a + c.count*c.price ,0))
 
     // 5.单选功能 (单选框中 )
     const singleCheck = ( val, item ) => {
@@ -60,6 +53,6 @@ export const useCartStore = defineStore('cart',()=>{
         cartList.value.forEach((i) => i.selected = bool)
     }
 
-    return { cartList, allCount, allPrice, cartAllCheck, addCart, delCart, singleCheck, allCheck }
+    return { cartList, allCount, allPrice, cartAllCheck, selectedCount, selectedPrice ,addCart, delCart, singleCheck, allCheck }
 },
 { persist:true })  // 数据持久化

@@ -51,8 +51,8 @@ const handleCheckAllChange = (bool) => {
         </div>
         <div class="foot">
             <div class="total">
-                共 10 件商品，已选择 2 件，商品合计：
-                <span class="yuan">&yen; 286</span>
+                共 {{cartStore.allCount}}件商品，已选择 {{cartStore.selectedCount}} 件，商品合计：
+                <span class="yuan">&yen; {{cartStore.selectedPrice.toFixed(2)}}</span>
             </div>
             <div class="button">
                 <el-button >下单结算</el-button>

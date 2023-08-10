@@ -7,7 +7,7 @@ import { ElMessage } from 'element-plus'; // 消息提示插件
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { useUserStore } from '../../stores/user' // pinia 状态管理库
+import { useUserStore } from '../../stores/userStore' // pinia 状态管理库
 const userStore = useUserStore()
 const router = useRouter()
 

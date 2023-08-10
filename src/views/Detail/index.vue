@@ -5,7 +5,7 @@ import { getDetailAPI } from '../../apis/detail'; // 接口
 import ImageView from '../../components/ImageView/index.vue'; // 放大镜图片 子组件
 import DetailHotVue from './components/DetailHot.vue'; // 热榜 子组件
 import XtxSku from '../../components/XtxSku/index.vue'; // SKU 子组件
-import { useCartStore } from '../../stores/cart'
+import { useCartStore } from '../../stores/cartStore'
 import { ElMessage } from 'element-plus';
 
 const cartStore = useCartStore()

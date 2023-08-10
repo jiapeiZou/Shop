@@ -1,7 +1,7 @@
 // axios 基础封装
 import axios from 'axios';
 import router from '@/router'; // 这里没用 useRouter 使用范围：1.setup 函数中 2. composable 函数中 （因为它是Vue 3 的 Composition API 而设计的 ）
-import { useUserStore } from '../stores/user'; // 存储在 pinia 中 的用户数据（token 从此取）
+import { useUserStore } from '../stores/userStore'; // 存储在 pinia 中 的用户数据（token 从此取）
 import 'element-plus/theme-chalk/el-message.css';
 import { ElMessage } from 'element-plus'; // 消息提示插件
 
@@ -30,7 +30,7 @@ httpInstance.interceptors.response.use( res => res.data, e => {
   const userStore = useUserStore()
 
   // 统一错误提示
-  console.log(e)
+  console.log('eeeee',e)
   ElMessage({
     type: 'warning',
     message: e.response.data.message

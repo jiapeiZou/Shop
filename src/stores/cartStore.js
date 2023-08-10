@@ -81,6 +81,13 @@ export const useCartStore = defineStore('cart',()=>{
         cartList.value.forEach((i) => i.selected = bool)
     }
 
-    return { cartList, allCount, allPrice, cartAllCheck, selectedCount, selectedPrice ,addCart, delCart, singleCheck, allCheck }
+    // >>>>> 清空购物车
+    const clearCart = () => {
+        cartList.value = []
+    }
+
+    return { 
+        cartList, allCount, allPrice, cartAllCheck, selectedCount, selectedPrice,
+        addCart, delCart, singleCheck, allCheck, clearCart }
 },
 { persist:true })  // 数据持久化

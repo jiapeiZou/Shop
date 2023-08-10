@@ -23,6 +23,14 @@ export const delCartAPI = ( ids )=> {
     })
 }
 
+// 合并购物车 (登陆后 把未登陆状态下 如果有加入购物车的数据，渲染出来)
+export const mergeCartList = ( data ) => {
+      return httpInstance({
+        url:'/member/cart/merge',
+        method: 'POST',
+        data // dada结构[ {skuId: , selected: , count: }, …… ]
+      })
+}
 
 // 获取最新的购物车列表
 export const getNewCartAPI = () => {

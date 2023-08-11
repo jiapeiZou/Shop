@@ -10,6 +10,10 @@ const checkChange = (val, item) => {
 const handleCheckAllChange = (bool) => {
     cartStore.allCheck(bool)
 }
+
+const handelDelete = (skuId) => {
+    cartStore.delCart(skuId)
+}
 </script>
 
 <template>
@@ -44,7 +48,7 @@ const handleCheckAllChange = (bool) => {
                             <el-input-number v-model="item.count" :min="0"  />     
                         </td>
                         <td class="all"> &yen;{{ (item.count*item.price).toFixed(2) }} </td>
-                        <td class="del"> 删除 </td>
+                        <td class="del" @click="() => handelDelete(item.skuId)"> 删除 </td>
                     </tr>
                 </tbody>
             </table>
@@ -55,7 +59,7 @@ const handleCheckAllChange = (bool) => {
                 <span class="yuan">&yen; {{cartStore.selectedPrice.toFixed(2)}}</span>
             </div>
             <div class="button">
-                <el-button >下单结算</el-button>
+                <el-button @click="$router.push('/checkout')">下单结算</el-button>
             </div>
         </div>
     </div>

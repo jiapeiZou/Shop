@@ -49,10 +49,11 @@ const handleAddCart = () => {
             attrsText: skuObj.attrsText, // 商品规格文本
             selected: true, // 商品是否选中
         })
+        ElMessage.success('添加成功')
     }
     // 未选择规格 提示用户
     else{
-    ElMessage.warning('请选择规格')
+        ElMessage.warning('请选择规格')
     }
 }
 

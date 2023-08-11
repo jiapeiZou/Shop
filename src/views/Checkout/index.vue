@@ -12,7 +12,7 @@ const getCheckInfo = async () => {
     checkInfo.value = result.result
     console.log('.........', checkInfo.value)
 
-    const item  = checkInfo.value.userAddresses.filter(item => item.isDefault === 0)
+    const item  = checkInfo.value.userAddresses.find(item => item.isDefault === 0)
     defaultAddress.value = item
 
     console.log('/////', defaultAddress.value)
@@ -20,6 +20,22 @@ const getCheckInfo = async () => {
 }
 onMounted(() => getCheckInfo())
 
+// 控制弹框打开
+const showDialog = ref(true) 
+
+// 切换地址
+const activeAddress = ref({})
+const changeActive = (item) => {
+    activeAddress.value = item // 当前被点击的那项
+}
+const confirm = () => {
+    defaultAddress.value = activeAddress.value
+    activeAddress.value = {}
+    showDialog.value = false
+}
+const cancel = () => {
+   showDialog.value = false
+}
 </script>
 
 <template>
@@ -30,17 +46,38 @@ onMounted(() => getCheckInfo())
            <div class="address">
               <div class="text">
                 <!-- <div class="none" >需要先添加收货地址才可提交订单。</div> -->
-                <ul v-for="i in defaultAddress" :key="i.index">
-                    <li><span>收&nbsp;货&nbsp;人&nbsp;:</span>{{ i.receiver }}</li>
-                    <li><span>联系方式:</span>{{ i.contact }} </li>
-                    <li><span>收货地址:</span>{{ i.fullLocation }}</li>
+                <ul >
+                    <li><span>收&nbsp;货&nbsp;人&nbsp;:</span>{{ defaultAddress.receiver }}</li>
+                    <li><span>联系方式:</span>{{ defaultAddress.contact }} </li>
+                    <li><span>收货地址:</span>{{ defaultAddress.fullLocation }}</li>
                 </ul>
               </div>
               <div class="button">
-                <el-button>切换地址</el-button>
-                <el-button>添加地址</el-button>
+                <el-button @click="showDialog = true" >切换地址</el-button>
+                <el-button >添加地址</el-button>
+                <!-- 切换地址 弹框 -->   
+                <el-dialog v-model="showDialog" title="切换收货地址" width="30%" center>
+                    <div class="addressWrapper">
+                        <div class="text item"  @click="() => changeActive(i)" v-for="i in checkInfo.userAddresses" :key="i.id"  :class="{ active: activeAddress.id === i.id }">
+                            <ul>
+                                <li><span>收<i />货<i />人：</span>{{ i.receiver }} </li>
+                                <li><span>联系方式：</span>{{ i.contact }}</li>
+                                <li><span>收货地址：</span>{{  i.fullLocation }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <template #footer>
+                        <span class="dialog-footer">
+                            <el-button @click="cancel">取消</el-button>
+                            <el-button type="primary" @click="confirm"> 确定 </el-button>
+                        </span>
+                    </template>
+                </el-dialog>
+                 <!-- 添加地址 弹框 -->      
+
               </div>
            </div>
+          
            <!-- 商品信息 -->
            <h3 class="title">商品信息</h3>
            <div class="goodsinfo">
@@ -241,5 +278,35 @@ onMounted(() => getCheckInfo())
         margin-right: 40px;
       }
     }
+}
+
+.addressWrapper {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.text {
+  flex: 1;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+
+  &.item {
+    border: 1px solid #f5f5f5;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    &.active,
+    &:hover {
+      border-color: $xtxColor;
+      background: lighten($xtxColor, 50%);
+    }
+
+    >ul {
+      padding: 10px;
+      font-size: 14px;
+      line-height: 30px;
+    }
+  }
 }
 </style>

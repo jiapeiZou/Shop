@@ -46,7 +46,7 @@ const confirm = () => { // el-popconfirm 中自带的 （confirm 点击确认按
             </el-popconfirm>
           </li>
           <li><a href="javascript:;"> 我的订单 </a></li>
-          <li><a href="javascript:;"> 会员中心 </a></li>
+          <li><a href="javascript:;" @click="$router.push('/member')"> 会员中心 </a></li>
         </template>
 
         <template v-else>

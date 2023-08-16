@@ -12,7 +12,7 @@ const getProduct = async() =>{
 }
 
 getProduct()
-
+   
 </script>
 
 <template>
@@ -21,7 +21,7 @@ getProduct()
 
       <div class="box">
         <div class="big-picture">
-          <router-link to="/">
+          <router-link :to="`/category/${item.id}`">
             <img v-img-lazy="item.picture">
             <strong class="label">
               <span>{{item.name}}馆</span>

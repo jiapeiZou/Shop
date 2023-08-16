@@ -34,7 +34,7 @@ onMounted( () => getHot () )
         <div>
             <h3 v-if="props.hotType === 1" > 24小时热榜 </h3>
             <h3 v-if="props.hotType === 2" > 周热榜 </h3>
-            <router-link to="/" class="product-item"  v-for="item in prodectList" :key="item.id">
+            <router-link  class="product-item"  v-for="item in prodectList" :key="item.id" :to="`/detail/${item.id}`">
                 <img :src="item.picture" alt="">
                 <p class="name">{{ item.name }}</p>
                 <p class="desc">{{ item.desc }}</p>

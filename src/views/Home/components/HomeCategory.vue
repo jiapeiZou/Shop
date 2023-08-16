@@ -31,7 +31,7 @@ getCategory()
         <router-link
           v-for="i in item.children.slice(0,2)"
           :key="i.id"
-          to="/"
+          :to="`/category/${item.id}?name=${item.name}`"
         >
           {{ i.name }}
         </router-link>
@@ -44,7 +44,7 @@ getCategory()
               v-for="i in item.goods"
               :key="i.id"
             >
-              <router-link to="/">
+              <router-link :to="`/detail/${i.id}`">
                 <img
                   :src="i.picture"
                   alt=""

@@ -1,22 +1,23 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getCheckInfoAPI } from '../../apis/checkout'
-// import { useCartStore } from '../../stores/cartStore'
-// const cartStore = useCartStore()
+import { useRouter } from 'vue-router'
+import { getCheckInfoAPI, createOrderAPI } from '../../apis/checkout'
+import { getNewCartAPI } from '../../apis/cart'
+import { useCartStore } from '../../stores/cartStore'
+const cartStore = useCartStore()
+const router = useRouter()
 
 const checkInfo = ref({}) // 订单对象
 const defaultAddress = ref({}) // 默认地址对象
+
 const getCheckInfo = async () => {
+// 获取商品详情接口
     const result = await getCheckInfoAPI()
     checkInfo.value = result.result
-    console.log('.........', checkInfo.value)
-
+// 适配默认地址 从地址列表中筛选出 isDefault === 0
     const item  = checkInfo.value.userAddresses.find(item => item.isDefault === 0)
     defaultAddress.value = item
-
-    console.log('/////', defaultAddress.value)
-
 }
 onMounted(() => getCheckInfo())
 
@@ -36,6 +37,36 @@ const confirm = () => {
 const cancel = () => {
    showDialog.value = false
 }
+
+// 提交订单
+const handleCreatOrder = async () => {
+    const res = await createOrderAPI({
+        deliveryTimeType: 1,
+        payType: 1,
+        payChannel: 1,
+        buyerMessage: '',
+        goods: checkInfo.value.goods.map(item => {
+            return {
+               skuId: item.skuId,
+               count: item.count,
+            }
+        }),
+        addressId: defaultAddress.value.id,
+    })
+    // 获取到后端返回的ID
+    const orderId = res.result.id
+    // 跳转到支付页 并携带订单ID
+    router.push({
+        path:'/pay',
+        query: {
+            id: orderId
+        }
+    })
+    //  获取最新购物车列表 （清除已购的流程 后端操作了）
+       const result = await getNewCartAPI()
+        cartStore.cartList = result.result
+}
+
 </script>
 
 <template>
@@ -147,7 +178,7 @@ const cancel = () => {
                </div>
             <!-- 提交 -->
             <div class="submit">
-                <el-button type="primary">提交订单</el-button>
+                <el-button type="primary" @click="handleCreatOrder">提交订单</el-button>
             </div>
         </div>
     </div>

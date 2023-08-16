@@ -30,7 +30,7 @@ getCategory()
           v-for="item in categoryList"
           :key="item.id"
           class="home"
-        >
+        >   
         <!-- 激活状态显示 active-class="active" -->
           <router-link :to= "`/category/${item.id}?name=${item.name}`"  active-class="active">
             {{ item.name }}

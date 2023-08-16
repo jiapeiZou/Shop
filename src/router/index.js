@@ -10,7 +10,11 @@ import SubCategory from '../views/SubCategory/index.vue'
 import Detail from '../views/Detail/index.vue'
 import CartList from '../views/CartList/index.vue'
 import Checkout from '../views/Checkout/index.vue'
-import { resolveComponent } from 'vue'
+import Pay from '../views/Pay/index.vue'
+import PayBack from '../views/PayBack/index.vue'
+import Member from '../views/Member/index.vue'
+import Userinfo from '../views/Member/components/Userinfo.vue'
+import UserOrder from '../views/Member/components/UserOrder.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +30,7 @@ const router = createRouter({
       component: Layout,
 
       children: [
-        // 二级路由：home（默认二级路由设为''）
+        // 二级路由：home（ 当出现路由嵌套时 可设置 默认二级路由设为''）
         {
           path: '', 
           component: Home
@@ -55,6 +59,34 @@ const router = createRouter({
         {
           path: 'checkout',
           component: Checkout
+        },
+        // 二级路由：支付
+        {
+          path: 'pay',
+          component: Pay
+        },
+        // 二级路由：支付成功
+        {
+          path:'paycallback',
+          component: PayBack
+        },
+         // 二级路由：会员中心
+        {
+          path: 'member',
+          component: Member,
+          children: [
+            // 三级路由
+            // 三级路由：个人中心
+            {
+              path: '',  //（ 当出现路由嵌套时 可设置 默认二级路由设为''）
+              component: Userinfo
+            },
+            // 三级路由：我的订单
+            {
+              path: 'order',
+              component: UserOrder
+            },
+          ]
         }
       ]
     }

@@ -46,7 +46,7 @@ const tabChange = () => {
 
 //定义一个响应式数据， 控制是否停止监听
 const disabled = ref(false)
-// 能监听到 页面触底 
+// 能监听到 页面触底时 自动执行的函数 
 const load = async() => { 
      // 触底时 让page + 1
      data.value.page++

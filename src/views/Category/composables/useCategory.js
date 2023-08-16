@@ -26,7 +26,7 @@ export function useCategory() {
     // onBeforeRouteUpdate生命周期函数 === 监听路由的变化
     // 函数提供的to： 为更新的路由数据
     onBeforeRouteUpdate( (to) => {
-        console.log(to)
+        console.log(to) // to 是指变化后的新路由数据
         getCategory(to.params.id)
        // 监听都路由变化时 就调用接口函数 并传入新的路由的数据
     })

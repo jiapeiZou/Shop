@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-    <router-link class="product-item" to="/">
+    <router-link class="product-item" :to="`/detail/${product.id}`">
         <img v-img-lazy="product.picture" >
         <p class="title">{{ product.name }}</p>
         <p class="text">{{ product.desc }}</p>

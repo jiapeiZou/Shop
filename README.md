@@ -1,35 +1,42 @@
-# vue3-rabbit
+# 小兔鲜电商前端
 
-This template should help get you started developing with Vue 3 in Vite.
+小兔鲜电商前端项目，包含首页/登录/商品列表/商品详情/购物车/订单/支付等11个页面。
 
-## Recommended IDE Setup
+## 安装依赖
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## 命令
 
-```sh
+开发：
+```
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
+发布：
+```
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
+语法检查：
+```
 npm run lint
 ```
+
+## 运行截图
+
+![](imgs/home.png)
+
+![](imgs/cart.png)
+
+![](imgs/login.png)
+
+![](imgs/order.png)
+
+![](imgs/pay2.png)
+
+![](imgs/zoom.png)
+
+![](imgs/submit2.png)

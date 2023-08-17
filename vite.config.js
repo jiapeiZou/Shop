@@ -8,26 +8,25 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver()]
     }),
     Components({
       resolvers: [
         // 1.配置elementPlus采用sass样式颜色配置
-        ElementPlusResolver({ importStyle: "sass" })
-      ],
-    }),
+        ElementPlusResolver({ importStyle: 'sass' })
+      ]
+    })
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }, 
+  },
   css: {
     preprocessorOptions: {
       scss: {
@@ -35,8 +34,8 @@ export default defineConfig({
         additionalData: `
            @use "@/styles/element/index.scss" as *;
            @use "@/styles/var.scss" as *;
-           `,
-      },
-    },
-  },
+           `
+      }
+    }
+  }
 })
